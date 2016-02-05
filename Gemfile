@@ -45,4 +45,7 @@ group :development do
   gem 'spring'
 
   gem 'bootstrap-sass'
+
+  # Devise for user sign-up and authentication
+  gem 'devise'
 end
