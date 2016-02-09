@@ -12,16 +12,17 @@
     <ul class="nav nav-tabs">
       <li><%= link_to "Home", welcome_index_path %></li>
       <li><%= link_to "About", welcome_about_path %></li>
-    <div class="pull-right" style="margin-top:10px;">
-      <!-- User sign in or out tab functions -->
-      <% if user_signed_in? %>
-        Signed in as: <strong><%= current_user.email %></strong> |
-        <%= link_to 'Edit profile', edit_user_registration_path %>
-      <% else %>
-        <%= link_to "Sign Up", new_user_registration_path %> -
-        <%= link_to "Sign In", new_user_session_path %>
-      <% end %>
-    </div>
+      <div class="pull-right" style="margin-top:10px;">
+        <!-- User sign in or out tab functions -->
+        <% if user_signed_in? %>
+          Signed in as: <strong><%= current_user.email %></strong> |
+          <%= link_to 'Edit profile', edit_user_registration_path %>
+        <% else %>
+          <%= link_to "Sign Up", new_user_registration_path %> -
+          <%= link_to "Sign In", new_user_session_path %>
+        <% end %>
+      </div>
+    </ul>
     <div class="flash">
       <% if flash[:notice] %>
         <div class="alert alert-success">
@@ -40,7 +41,7 @@
         </div>
       <% end %>
     </div>
-  </ul>
+
 
   <div class="alert">
     <% if flash[:notice] %>
