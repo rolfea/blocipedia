@@ -23,15 +23,15 @@ class ApplicationPolicy
   end
 
   def update?
-    false
+    destroy?
   end
 
   def edit?
-    update?
+    destroy?
   end
 
   def destroy?
-    false
+    user.admin? || record.user == user
   end
 
   def scope
