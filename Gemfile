@@ -49,6 +49,9 @@ group :development do
   # Devise for user sign-up and authentication
   gem 'devise'
 
+  # Pundit for authorization
+  gem 'pundit'
+
   # Figaro for environment variables
   gem 'figaro', '1.0'
 end
