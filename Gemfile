@@ -54,4 +54,7 @@ group :development do
 
   # Figaro for environment variables
   gem 'figaro', '1.0'
+
+  # Faker for seeding database
+  gem 'faker'
 end
