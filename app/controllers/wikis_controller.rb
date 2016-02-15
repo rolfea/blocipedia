@@ -1,5 +1,8 @@
 class WikisController < ApplicationController
 
+  def user_wikis
+  end
+
   def index
     @wikis = Wiki.all
   end
