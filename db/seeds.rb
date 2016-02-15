@@ -3,6 +3,7 @@
   User.create!(
     email: Faker::Internet.email,
     password: "helloworld"
+    confirmed_at: "2016-02-15 18:00:00"
   )
 end
 users = User.all
