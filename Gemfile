@@ -57,4 +57,7 @@ group :development do
 
   # Faker for seeding database
   gem 'faker'
+
+  # Stripe for account upgrades
+  gem 'stripe'
 end
