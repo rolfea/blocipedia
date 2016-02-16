@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'welcome#index'
   resources :charges, only: [:new, :create]
-  resources :downgrades, only: [:update]
-  resources :users
+  resources :users do
+    put :downgrade
+  end
   resources :wikis do
     collection do
       get '/user_wikis', to: 'wikis#user_wikis', as: :user

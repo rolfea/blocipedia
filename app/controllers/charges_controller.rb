@@ -2,9 +2,8 @@ class ChargesController < ApplicationController
   def new
 
     if current_user.premium? || current_user.admin?
-      redirect_to wikis_path
       flash[:alert] = "You do not need to upgrade your account at this time."
-    else
+      redirect_to wikis_path
     end
 
 
