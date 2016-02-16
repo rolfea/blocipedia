@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'welcome#index'
   resources :charges, only: [:new, :create]
+  resources :downgrades, only: [:update]
   resources :users
   resources :wikis do
     collection do
