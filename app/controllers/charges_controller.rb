@@ -1,5 +1,12 @@
 class ChargesController < ApplicationController
   def new
+
+    if current_user.role == "premium" || "admin"
+      redirect_to wikis_path
+      flash[:alert] = "You do not need to upgrade your account at this time."
+    end
+
+
     @stripe_btn_data = {
       key: "#{ Rails.configuration.stripe[:publishable_key] }",
       description: "Membership - #{current_user.email}",
@@ -22,16 +29,11 @@ class ChargesController < ApplicationController
       currency: 'usd'
     )
 
-    # If user already premium_user or admin, error, else upgrade account
-    if current_user.role == "premium_user" || "admin"
-      flash.now[:alert] = "You do not need to upgrade your account at this time."
-      # I need to stop the charge from occurring here
-      redirect_to wikis_path
-    else
-      flash[:notice] = "Thanks for upgrading your account, #{current_user.email}!"
-      current_user.role.update! role: 1
-      redirect_to wikis_path
-    end
+
+    flash[:notice] = "Thanks for upgrading your account, #{current_user.email}!"
+    current_user.update role: 1
+    redirect_to wikis_path
+
 
 
 
