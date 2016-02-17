@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'welcome#index'
-  resources :charges, only: [:new, :create, :destroy]
+  resources :charges, only: [:new, :create]
   resources :users do
     put :downgrade
   end
