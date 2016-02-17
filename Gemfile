@@ -60,4 +60,7 @@ group :development do
 
   # Stripe for account upgrades
   gem 'stripe'
+
+  # RedCarpet for Markdown
+  gem 'redcarpet'
 end
