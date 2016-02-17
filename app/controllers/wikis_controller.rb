@@ -5,7 +5,7 @@ class WikisController < ApplicationController
   end
 
   def index
-    @wikis = Wiki.all
+    @wikis = Wiki.visible_to(current_user)
   end
 
   def new
@@ -31,9 +31,9 @@ class WikisController < ApplicationController
   def show
     @wiki = Wiki.find(params[:id])
 
-    unless @wiki.private || current_user
-      flash[:alert] = "You must be signed in to view private wikis."
-      redirect_to new_session_path
+    if @wiki.private && current_user.free?
+      flash[:alert] = "You must upgrade to a premium account to view private wikis."
+      redirect_to new_charge_path
     end
   end
 
