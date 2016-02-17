@@ -40,7 +40,7 @@
   <h3>Downgrade my account</h3>
   <p>Would you like to cancel your premium account?
   <%= button_to "Downgrade my account", user_downgrade_path(resource_name),
-  data: { confirm: "Are you sure?" },
+  data: { confirm: "Are you sure? All private wikis will be made public." },
   method: :put %> </p>
 <% elsif current_user.free? %>
   <h3>Upgrade my account</h3>

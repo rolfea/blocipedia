@@ -21,8 +21,11 @@ class UsersController < ApplicationController
       charge: current_user.last_charge_id
     )
 
-    flash[:notice] = "Your refund has been issued, and your account has been downgraded."
+    flash[:notice] = "Your refund has been issued, and your account has been downgraded. \n All private wikis are now public."
     current_user.update_attributes :role => 0, :refund_id => refund.id
+    Wiki.where(user_id: current_user.id).find_each do |wiki|
+      wiki.update(private: false)
+    end
     redirect_to wikis_path
   end
 end
