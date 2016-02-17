@@ -1,11 +1,9 @@
 class ChargesController < ApplicationController
   def new
-
     if current_user.premium? || current_user.admin?
       flash[:alert] = "You do not need to upgrade your account at this time."
       redirect_to wikis_path
     end
-
 
     @stripe_btn_data = {
       key: "#{ Rails.configuration.stripe[:publishable_key] }",
@@ -31,7 +29,7 @@ class ChargesController < ApplicationController
 
 
     flash[:notice] = "Thanks for upgrading your account, #{current_user.email}!"
-    current_user.update role: 1
+    current_user.update :role => 1, :customer_id => customer.id, :last_charge_id => charge.id
     redirect_to wikis_path
 
 
@@ -41,5 +39,15 @@ class ChargesController < ApplicationController
   rescue Stripe::CardError => e
     flash.now[:alert] = e.message
     redirect_to new_charge_path
+  end
+
+  def destroy
+    refund = Stripe::Refund.create(
+      charge: current_user.last_charge_id
+    )
+
+    flash[:notice] = "Your refund has been issued, and your account has been downgraded."
+    current_user.update_attributes :role => 0, :refund_id => refund.idea
+    redirect_to wikis_path
   end
 end
