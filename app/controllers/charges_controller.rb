@@ -47,7 +47,7 @@ class ChargesController < ApplicationController
     )
 
     flash[:notice] = "Your refund has been issued, and your account has been downgraded."
-    current_user.update_attributes :role => 0, :refund_id => refund.idea
+    current_user.update_attributes :role => 0, :refund_id => refund.id
     redirect_to wikis_path
   end
 end
