@@ -1,7 +1,7 @@
 class WikisController < ApplicationController
 
   def user_wikis
-    @wikis = policy_scope(Wiki)
+    @wikis = current_user.own_wikis
   end
 
   def index

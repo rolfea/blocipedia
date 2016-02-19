@@ -31,7 +31,7 @@ class ApplicationPolicy
   end
 
   def destroy?
-    @current_user.admin? || record.user == user
+    user.admin? || record.user == user
   end
 
   def scope

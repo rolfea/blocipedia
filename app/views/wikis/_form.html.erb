@@ -16,3 +16,15 @@
   <% end %>
   <%= f.submit "Save", class: 'btn btn-success' %>
 <% end %>
+
+<% if @wiki.private? && @wiki.user == current_user %>
+  <%= form_for [@wiki, Collaborator.new] do |f| %>
+    <%= email_field_tag :collaborator %>
+    <%= f.submit "Add collaborator" %>
+  <% end %>
+
+<% end %>
+
+<% if @wiki.users.any? %>
+  <h2>Collaborators</h2>
+<% end %>

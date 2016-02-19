@@ -10,12 +10,12 @@ class WikiPolicy < ApplicationPolicy
 
     def resolve
       wikis = []
-      if @user.role == 'admin'
+      if @user.admin?
         wikis = scope.all
-      elsif @user.role == 'premium'
+      elsif @user.premium?
         all_wikis = scope.all
         all_wikis.each do |wiki|
-          if !wiki.private? || wiki.user_id == user || wiki.collaborators.include?(@user)
+          if !wiki.private? || wiki.user_id == @user || wiki.collaborators.include?(@user)
             wikis << wiki
           end
         end

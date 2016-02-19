@@ -4,9 +4,13 @@
 
    has_many :collaborators
    has_many :wikis, :through => :collaborators
-   
+
    def set_default_role
      self.role ||= :free
+   end
+
+   def own_wikis
+     Wiki.where(user: self)
    end
 
   devise :database_authenticatable, :registerable,
