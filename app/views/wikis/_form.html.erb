@@ -26,4 +26,8 @@
 
 <% if @wiki.users.any? %>
   <h2>Collaborators</h2>
+  <% @wiki.collaborators.each do |collaborator| %>
+    <p> <%= collaborator.user.email if collaborator.user %></p>
+    <%= link_to "Remove Collaborator", [@wiki, collaborator], method: :delete %>
+  <% end %>
 <% end %>
