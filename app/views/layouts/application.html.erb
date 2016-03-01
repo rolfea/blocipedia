@@ -32,10 +32,10 @@
       </div>
     </ul>
     <div class="flash">
-      <% if flash[:notice] %>
+      <% if flash[:success] %>
         <div class="alert alert-success">
           <button type="button" class="close" data-dismiss="alert">&times;</button>
-          <%= flash[:notice] %>
+          <%= flash[:success] %>
         </div>
       <% elsif flash[:alert] %>
         <div class="alert alert-danger">
