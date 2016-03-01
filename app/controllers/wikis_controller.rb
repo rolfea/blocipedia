@@ -31,7 +31,7 @@ class WikisController < ApplicationController
   def show
     @wiki = Wiki.find(params[:id])
 
-    if @wiki.private && current_user.free?
+    unless !@wiki.private || current_user.premium? || current_user.admin? || @wiki.users.include?(current_user)
       flash[:alert] = "You must upgrade to a premium account to view private wikis."
       redirect_to new_charge_path
     end

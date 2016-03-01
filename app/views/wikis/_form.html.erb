@@ -24,7 +24,7 @@
   <% end %>
 <% end %>
 
-<% if @wiki.users.any? %>
+<% if @wiki.user == current_user %>
   <h2>Collaborators</h2>
   <% @wiki.collaborators.each do |collaborator| %>
     <p> <%= collaborator.user.email if collaborator.user %></p>

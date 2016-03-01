@@ -23,11 +23,11 @@ class ApplicationPolicy
   end
 
   def update?
-    destroy?
+    user.admin? || record.user == user || record.users.include?(user)
   end
 
   def edit?
-    destroy?
+    update?
   end
 
   def destroy?
