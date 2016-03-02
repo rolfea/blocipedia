@@ -1,4 +1,7 @@
  class User < ActiveRecord::Base
+   extend FriendlyId
+   friendly_id :email, use: :slugged
+
    enum role: [:free, :premium, :admin]
    after_initialize :set_default_role, :if => :new_record?
 
