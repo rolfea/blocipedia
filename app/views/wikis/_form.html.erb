@@ -3,7 +3,7 @@
     <%= f.label :title %>
     <%= f.text_field :title, class: 'form-control', placeholder: "Enter Wiki Title" %>
   </div>
-  <div class="form-group">
+  <div class="form-group", id="epiceditor">
     <%= f.label :body %>
     <%= f.text_area :body, class: 'form-control', placeholder: "Enter Wiki Body" %>
   </div>
@@ -14,7 +14,9 @@
       <% end %>
     </div>
   <% end %>
-  <%= f.submit "Save", class: 'btn btn-success' %>
+  <div style="margin-top:35px;">
+    <%= f.submit "Save", class: 'btn btn-success' %>
+  </div>
 <% end %>
 
 <% if @wiki.private? && @wiki.user == current_user %>
@@ -31,3 +33,9 @@
     <%= link_to "Remove Collaborator", [@wiki, collaborator], method: :delete %>
   <% end %>
 <% end %>
+
+<script>
+$(document).ready(function(){
+  var editor = new EpicEditor().load();
+})
+</script>

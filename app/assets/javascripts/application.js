@@ -13,6 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 
+//= require 'epiceditor'
 //= require bootstrap
 //= require_tree .
-//=
